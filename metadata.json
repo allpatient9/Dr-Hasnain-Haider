@@ -1,0 +1,8 @@
+{
+  "name": "Remix Dr. Hasnain Haider - Best ENT Specialist in Lahore",
+  "description": "Consult Dr. Hasnain Haider, an experienced ENT Specialist and ENT Surgeon in Lahore providing expert diagnosis and treatment for ear, nose, throat, sinus, and hearing conditions.",
+  "requestFramePermissions": [],
+  "majorCapabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
