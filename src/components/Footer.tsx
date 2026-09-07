@@ -191,12 +191,9 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenBooking }) => 
           </div>
         </div>
 
-        {/* SEO Tagline & Copyright */}
-        <div className="pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-slate-500">
-          <p className="text-center md:text-left">
-            <strong className="text-slate-300">Best ENT Specialist in Lahore</strong> — Expert medical and surgical otolaryngology care by Dr. Hasnain Haider in Johar Town, Lahore, Pakistan.
-          </p>
-          <p className="text-center md:text-right">
+        {/* Copyright */}
+        <div className="pt-8 flex justify-center items-center text-xs text-slate-500">
+          <p className="text-center">
             © {new Date().getFullYear()} Dr. Hasnain Haider. All rights reserved.
           </p>
         </div>

@@ -266,7 +266,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenBooking })
                   )}
                 </div>
 
-                {/* Floating Doctor Profile & Directions Card at Bottom Right */}
+                {/* Floating Doctor Profile Card at Bottom Right */}
                 <div className="absolute -bottom-3 right-2 sm:bottom-5 sm:right-5 bg-white/95 backdrop-blur-md p-3.5 sm:p-4 lg:p-5 rounded-2xl shadow-xl border border-slate-100 min-w-[200px] sm:min-w-[220px] text-left z-10">
                   <h4 className="font-extrabold text-sm sm:text-base text-slate-900 leading-snug">
                     {DOCTOR_INFO.name}
@@ -277,16 +277,6 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenBooking })
                   <p className="text-[11px] text-slate-500 mt-0.5 font-medium">
                     {DOCTOR_INFO.degrees}
                   </p>
-                  <a
-                    href={DOCTOR_INFO.googleMapsLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    id="hero-floating-directions-btn"
-                    className="inline-flex items-center justify-between text-xs font-bold text-blue-600 hover:text-blue-700 mt-2.5 pt-2.5 border-t border-slate-100 w-full group"
-                  >
-                    <span>Get Directions</span>
-                    <ChevronRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
-                  </a>
                 </div>
               </div>
 
@@ -387,17 +377,10 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenBooking })
                   </p>
                 </div>
 
-                <div className="pt-3 border-t border-slate-100">
-                  <span className="text-[11px] text-slate-500 block mb-2">
+                <div className="pt-3 border-t border-slate-100 mt-auto">
+                  <span className="text-[11px] text-slate-500 block">
                     <strong className="text-slate-700">Signs:</strong> {problem.commonSigns}
                   </span>
-                  <button
-                    onClick={() => onOpenBooking(problem.title)}
-                    id={`problem-consult-${problem.id}`}
-                    className="w-full py-2 px-3 text-xs font-bold text-blue-600 hover:text-white bg-blue-50 hover:bg-blue-600 rounded-lg transition-colors text-center"
-                  >
-                    Consult Doctor →
-                  </button>
                 </div>
               </div>
             ))}
@@ -415,7 +398,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenBooking })
               Clinical Specializations
             </div>
             <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-900 tracking-tight">
-              Featured ENT Services in Lahore
+              ENT Services
             </h2>
             <p className="text-sm text-slate-600 mt-2 max-w-xl">
               Advanced otolaryngology diagnostic and surgical procedures performed using modern medical protocols.
@@ -468,19 +451,14 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenBooking })
                 </div>
               </div>
 
-              <div className="pt-4 border-t border-slate-100 flex items-center justify-between gap-2">
+              <div className="pt-4 border-t border-slate-100 flex items-center justify-between">
                 <button
                   onClick={() => onNavigate('service-detail', service.id)}
                   id={`home-service-detail-${service.id}`}
-                  className="text-xs font-bold text-slate-700 hover:text-blue-600 transition-colors"
+                  className="text-xs font-bold text-slate-700 hover:text-blue-600 transition-colors inline-flex items-center gap-1"
                 >
-                  View Dedicated Service Page →
-                </button>
-                <button
-                  onClick={() => onOpenBooking(service.title)}
-                  className="py-1.5 px-3 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-xs font-bold transition-colors shadow-xs"
-                >
-                  Book Slot
+                  <span>View Dedicated Service Page</span>
+                  <ArrowRight className="w-3.5 h-3.5 text-blue-600" />
                 </button>
               </div>
             </div>
@@ -497,7 +475,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenBooking })
             Patient Trust & Testimonials
           </span>
           <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-900 tracking-tight mt-3">
-            Real Stories From Patients in Lahore
+            Patients Feedback
           </h2>
           <p className="text-sm sm:text-base text-slate-600 mt-2">
             Read authentic feedback from patients who recovered from chronic sinus issues, ear pain, and breathing obstacles under Dr. Hasnain Haider's care.
@@ -587,38 +565,6 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenBooking })
                 </div>
               );
             })}
-          </div>
-
-          {/* Quick Help Card */}
-          <div className="mt-8 text-center bg-white p-6 rounded-2xl border border-slate-200 shadow-xs flex flex-col sm:flex-row items-center justify-between gap-4">
-            <div className="text-left">
-              <h4 className="font-bold text-slate-900 text-sm sm:text-base">
-                Have a different question or need urgent advice?
-              </h4>
-              <p className="text-xs sm:text-sm text-slate-600">
-                Reach out directly to Dr. Hasnain Haider’s clinic team via WhatsApp or call.
-              </p>
-            </div>
-            <div className="flex items-center gap-3 shrink-0 w-full sm:w-auto">
-              <a
-                href={DOCTOR_INFO.whatsappUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                id="faq-whatsapp-btn"
-                className="flex-1 sm:flex-none inline-flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-xs shadow-xs transition-colors"
-              >
-                <MessageCircle className="w-3.5 h-3.5" />
-                <span>Ask on WhatsApp</span>
-              </a>
-              <button
-                onClick={() => onOpenBooking()}
-                id="faq-book-consultation-btn"
-                className="flex-1 sm:flex-none inline-flex items-center justify-center gap-1.5 px-4 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-700 text-white font-bold text-xs shadow-xs transition-colors"
-              >
-                <Calendar className="w-3.5 h-3.5" />
-                <span>Book Visit</span>
-              </button>
-            </div>
           </div>
         </div>
       </section>
