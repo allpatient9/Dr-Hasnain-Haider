@@ -27,6 +27,9 @@ interface AboutPageProps {
 
 export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, onOpenBooking }) => {
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0);
+  const [doctorImg, setDoctorImg] = useState<string>(() => {
+    return localStorage.getItem('dr_hasnain_haider_custom_photo') || DOCTOR_INFO.doctorImage;
+  });
 
   const toggleFaq = (index: number) => {
     setOpenFaqIndex(openFaqIndex === index ? null : index);
@@ -143,9 +146,15 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, onOpenBooking 
             <div className="lg:col-span-5 order-1 lg:order-2">
               <div className="relative mx-auto max-w-sm rounded-2xl overflow-hidden shadow-2xl border-2 border-blue-500/30 bg-slate-800">
                 <img
-                  src={DOCTOR_INFO.doctorImage}
+                  src={doctorImg}
+                  onError={() => {
+                    if (doctorImg !== '/images/Dr. Hasnain Haider ENT Specialist.jpg') {
+                      setDoctorImg('/images/Dr. Hasnain Haider ENT Specialist.jpg');
+                    }
+                  }}
                   alt="Dr. Hasnain Haider ENT Specialist in Lahore"
                   className="w-full aspect-[3/4] object-cover"
+                  referrerPolicy="no-referrer"
                 />
                 <div className="p-4 bg-slate-950/90 border-t border-slate-700/80">
                   <div className="font-bold text-lg text-white">{DOCTOR_INFO.name}</div>

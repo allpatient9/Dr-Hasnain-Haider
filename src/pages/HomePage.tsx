@@ -28,6 +28,9 @@ import {
   HelpCircle,
   ChevronDown,
   ChevronUp,
+  Camera,
+  UploadCloud,
+  Check,
 } from 'lucide-react';
 import {
   DOCTOR_INFO,
@@ -47,6 +50,38 @@ interface HomePageProps {
 
 export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenBooking }) => {
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0);
+  const [doctorImg, setDoctorImg] = useState<string>(() => {
+    return localStorage.getItem('dr_hasnain_haider_custom_photo') || DOCTOR_INFO.doctorImage;
+  });
+  const [isDraggingOver, setIsDraggingOver] = useState(false);
+  const [uploadSuccess, setUploadSuccess] = useState(false);
+  const fileInputRef = React.useRef<HTMLInputElement>(null);
+
+  const handlePhotoUpload = (file: File) => {
+    if (!file.type.startsWith('image/')) return;
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      const dataUrl = e.target?.result as string;
+      if (dataUrl) {
+        setDoctorImg(dataUrl);
+        try {
+          localStorage.setItem('dr_hasnain_haider_custom_photo', dataUrl);
+        } catch (err) {
+          console.warn('Could not save to localStorage:', err);
+        }
+        setUploadSuccess(true);
+        setTimeout(() => setUploadSuccess(false), 3000);
+
+        // Also persist to server endpoint
+        fetch('/api/upload-doctor-photo', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ dataUrl }),
+        }).catch((err) => console.log('Server save notification:', err));
+      }
+    };
+    reader.readAsDataURL(file);
+  };
 
   const toggleFaq = (idx: number) => {
     setOpenFaqIndex(openFaqIndex === idx ? null : idx);
@@ -156,12 +191,79 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenBooking })
             <div className="md:col-span-5 relative w-full flex flex-col items-center md:items-end">
               <div className="relative w-full max-w-sm sm:max-w-md md:max-w-none mb-2 md:mb-0">
                 {/* Doctor Portrait Frame */}
-                <div className="relative rounded-[2.25rem] sm:rounded-[2.75rem] overflow-hidden bg-slate-200/70 border border-slate-200/80 shadow-xl shadow-slate-200/50 aspect-[4/5] sm:aspect-[3/4] md:aspect-[4/5] lg:aspect-[3/4]">
+                <div
+                  className={`relative rounded-[2.25rem] sm:rounded-[2.75rem] overflow-hidden bg-slate-200/70 border-2 transition-all duration-200 shadow-xl shadow-slate-200/50 aspect-[4/5] sm:aspect-[3/4] md:aspect-[4/5] lg:aspect-[3/4] group ${
+                    isDraggingOver ? 'border-dashed border-blue-600 ring-4 ring-blue-400/30' : 'border-slate-200/80'
+                  }`}
+                  onDragOver={(e) => {
+                    e.preventDefault();
+                    setIsDraggingOver(true);
+                  }}
+                  onDragLeave={() => setIsDraggingOver(false)}
+                  onDrop={(e) => {
+                    e.preventDefault();
+                    setIsDraggingOver(false);
+                    if (e.dataTransfer.files && e.dataTransfer.files[0]) {
+                      handlePhotoUpload(e.dataTransfer.files[0]);
+                    }
+                  }}
+                >
                   <img
-                    src={DOCTOR_INFO.doctorImage}
+                    src={doctorImg}
+                    onError={() => {
+                      if (doctorImg !== '/images/Dr. Hasnain Haider ENT Specialist.jpg') {
+                        setDoctorImg('/images/Dr. Hasnain Haider ENT Specialist.jpg');
+                      }
+                    }}
                     alt="Dr. Hasnain Haider - Best ENT Specialist in Lahore"
                     className="w-full h-full object-cover object-top"
+                    referrerPolicy="no-referrer"
                   />
+
+                  {/* Hidden native file input for zero-friction upload */}
+                  <input
+                    ref={fileInputRef}
+                    type="file"
+                    accept="image/*"
+                    className="hidden"
+                    onChange={(e) => {
+                      if (e.target.files && e.target.files[0]) {
+                        handlePhotoUpload(e.target.files[0]);
+                      }
+                    }}
+                  />
+
+                  {/* Direct Update Photo Action Button */}
+                  <div className="absolute top-3.5 right-3.5 z-20">
+                    <button
+                      onClick={() => fileInputRef.current?.click()}
+                      type="button"
+                      title="Click to select and upload Dr. Hasnain Haider's original photo directly"
+                      aria-label="Upload actual photograph of Dr. Hasnain Haider"
+                      className="flex items-center gap-1.5 px-3 py-1.5 bg-slate-950/80 hover:bg-blue-600 text-white rounded-full text-xs font-semibold backdrop-blur-md shadow-lg transition-colors border border-white/20 cursor-pointer"
+                    >
+                      {uploadSuccess ? (
+                        <>
+                          <Check className="w-3.5 h-3.5 text-emerald-400" />
+                          <span>Photo Updated</span>
+                        </>
+                      ) : (
+                        <>
+                          <Camera className="w-3.5 h-3.5 text-white" />
+                          <span>Update Photo</span>
+                        </>
+                      )}
+                    </button>
+                  </div>
+
+                  {/* Visual Dropzone state when dragging file over image */}
+                  {isDraggingOver && (
+                    <div className="absolute inset-0 bg-blue-600/80 backdrop-blur-xs flex flex-col items-center justify-center text-white z-30 p-4 text-center">
+                      <UploadCloud className="w-10 h-10 mb-2 animate-bounce" />
+                      <p className="font-bold text-sm">Drop your photo here</p>
+                      <p className="text-xs opacity-90 mt-1">Upload Dr. Hasnain Haider photo directly</p>
+                    </div>
+                  )}
                 </div>
 
                 {/* Floating Doctor Profile & Directions Card at Bottom Right */}
