@@ -56,7 +56,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenBooking }) => 
             </div>
           </div>
 
-          {/* Col 2: Quick Links & SEO Pages */}
+          {/* Col 2: Quick Links */}
           <div>
             <h4 className="text-sm font-bold text-white uppercase tracking-wider mb-4 border-b border-slate-800 pb-2">
               Quick Navigation
@@ -66,7 +66,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenBooking }) => 
                 <button
                   onClick={() => handlePageClick('home')}
                   id="footer-nav-home"
-                  className="hover:text-blue-400 flex items-center gap-1.5 transition-colors"
+                  className="hover:text-blue-400 flex items-center gap-1.5 transition-colors text-slate-400 hover:text-white"
                 >
                   <ChevronRight className="w-3.5 h-3.5 text-slate-500" />
                   <span>Home</span>
@@ -76,7 +76,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenBooking }) => 
                 <button
                   onClick={() => handlePageClick('about')}
                   id="footer-nav-about"
-                  className="hover:text-blue-400 flex items-center gap-1.5 transition-colors"
+                  className="hover:text-blue-400 flex items-center gap-1.5 transition-colors text-slate-400 hover:text-white"
                 >
                   <ChevronRight className="w-3.5 h-3.5 text-slate-500" />
                   <span>About Dr. Hasnain Haider</span>
@@ -86,7 +86,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenBooking }) => 
                 <button
                   onClick={() => handlePageClick('services')}
                   id="footer-nav-services"
-                  className="hover:text-blue-400 flex items-center gap-1.5 transition-colors"
+                  className="hover:text-blue-400 flex items-center gap-1.5 transition-colors text-slate-400 hover:text-white"
                 >
                   <ChevronRight className="w-3.5 h-3.5 text-slate-500" />
                   <span>ENT Services & Treatments</span>
@@ -96,7 +96,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenBooking }) => 
                 <button
                   onClick={() => handlePageClick('contact')}
                   id="footer-nav-contact"
-                  className="hover:text-blue-400 flex items-center gap-1.5 transition-colors"
+                  className="hover:text-blue-400 flex items-center gap-1.5 transition-colors text-slate-400 hover:text-white"
                 >
                   <ChevronRight className="w-3.5 h-3.5 text-slate-500" />
                   <span>Contact Clinic & Map</span>
@@ -118,7 +118,7 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenBooking }) => 
           {/* Col 3: Key Treatments / Services */}
           <div>
             <h4 className="text-sm font-bold text-white uppercase tracking-wider mb-4 border-b border-slate-800 pb-2">
-              Individual ENT Service Pages
+              ENT Treatments
             </h4>
             <ul className="space-y-2 text-sm text-slate-400">
               {SERVICES_DATA.map((service) => (

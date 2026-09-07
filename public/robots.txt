@@ -1,0 +1,47 @@
+# Robots.txt for Dr. Hasnain Haider ENT Specialist Clinic Lahore
+# Website: https://drhasnainhaiderent.com/
+# Contact: appointments@drhasnainhaider.com / +92 311 6712017
+
+# Allow all reputable web search engines
+User-agent: *
+Allow: /
+Disallow: /api/
+
+# Explicitly welcome AI Search and Generative Answer Engines
+User-agent: Googlebot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: meta-externalagent
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+# Canonical XML Sitemap
+Sitemap: https://drhasnainhaiderent.com/sitemap.xml
+
+# LLMs Text Manifest for Generative AI search systems (Perplexity, ChatGPT, Gemini, Copilot)
+# See: https://drhasnainhaiderent.com/llms.txt
+
+Host: https://drhasnainhaiderent.com

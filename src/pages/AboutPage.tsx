@@ -1,21 +1,16 @@
 import React, { useState } from 'react';
 import {
   Award,
-  BookOpen,
   CheckCircle2,
   ChevronDown,
   ChevronUp,
   Heart,
   ShieldCheck,
-  Stethoscope,
   Calendar,
   Phone,
-  MessageCircle,
   HelpCircle,
   Clock,
   Sparkles,
-  Layers,
-  MapPin,
 } from 'lucide-react';
 import { DOCTOR_INFO, FAQS, WHY_CHOOSE_ITEMS } from '../data/medicalData';
 import { PageType } from '../types';
@@ -59,33 +54,6 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, onOpenBooking 
       institution: 'Pakistan Medical & Dental Council',
       detail: 'Active license to practice otolaryngology and surgical procedures',
       year: 'Official Medical Verification',
-    },
-  ];
-
-  const surgicalExpertise = [
-    {
-      title: 'Endoscopic Sinus Surgery (FESS)',
-      desc: 'Minimally invasive micro-endoscopic technique to clear infected sinus cavities and nasal polyps without external incisions.',
-    },
-    {
-      title: 'Septoplasty & Deviated Septum Correction',
-      desc: 'Precision surgical straightening of the nasal septum to restore effortless bilateral nasal airflow and eliminate chronic blockage.',
-    },
-    {
-      title: 'Tympanoplasty & Ear Microsurgery',
-      desc: 'Microscopic repair of perforated eardrums, ossicular chain reconstruction, and mastoid disease clearance.',
-    },
-    {
-      title: 'Coblation & Radiofrequency Tonsillectomy',
-      desc: 'Gentle low-temperature molecular dissection for recurring tonsil infections with significantly reduced post-op pain and faster healing.',
-    },
-    {
-      title: 'Vertigo & Balance Canalith Repositioning',
-      desc: 'Comprehensive diagnostic Dix-Hallpike testing and precision Epley maneuvers to resolve inner-ear vertigo and dizziness swiftly.',
-    },
-    {
-      title: 'Pediatric ENT Care',
-      desc: 'Child-friendly diagnosis and management of glue ear, adenoids, recurring ear infections, and nighttime breathing obstruction.',
     },
   ];
 
@@ -212,56 +180,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, onOpenBooking 
       </section>
 
       {/* ========================================================= */}
-      {/* 3. ENT SURGICAL & CLINICAL EXPERTISE                       */}
-      {/* ========================================================= */}
-      <section className="bg-slate-50 py-16 border-y border-slate-200">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-12">
-            <span className="text-xs font-bold text-blue-600 uppercase tracking-wider bg-white px-3 py-1 rounded-full border border-slate-200">
-              Areas of Specialization
-            </span>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-900 tracking-tight mt-3">
-              ENT Surgical & Clinical Expertise
-            </h2>
-            <p className="text-sm sm:text-base text-slate-600 mt-2">
-              Comprehensive treatment modalities covering delicate microscopic ear reconstructions, endoscopic sinus treatments, and airway surgeries.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {surgicalExpertise.map((item, idx) => (
-              <div
-                key={idx}
-                className="bg-white rounded-2xl p-6 border border-slate-200 shadow-sm hover:border-blue-300 hover:shadow-md transition-all"
-              >
-                <div className="w-10 h-10 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center mb-4">
-                  <Stethoscope className="w-5 h-5" />
-                </div>
-                <h3 className="text-base font-bold text-slate-900 mb-2">
-                  {item.title}
-                </h3>
-                <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-                  {item.desc}
-                </p>
-              </div>
-            ))}
-          </div>
-
-          <div className="text-center mt-10">
-            <button
-              onClick={() => onNavigate('services')}
-              id="about-view-all-services"
-              className="inline-flex items-center gap-2 px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl text-sm transition-colors shadow-sm active:scale-95"
-            >
-              <Layers className="w-4 h-4" />
-              <span>Explore All 7 Detailed ENT Services →</span>
-            </button>
-          </div>
-        </div>
-      </section>
-
-      {/* ========================================================= */}
-      {/* 4. MEDICAL PHILOSOPHY & PATIENT CARE APPROACH             */}
+      {/* 3. MEDICAL PHILOSOPHY & PATIENT CARE APPROACH             */}
       {/* ========================================================= */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
@@ -387,33 +306,11 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, onOpenBooking 
               </div>
             </div>
           ))}
-
-          <div className="bg-blue-600 text-white p-6 rounded-2xl shadow-sm flex flex-col justify-between">
-            <div>
-              <div className="w-10 h-10 rounded-xl bg-white/20 text-white flex items-center justify-center font-bold text-sm mb-3">
-                06
-              </div>
-              <h3 className="text-base font-bold text-white mb-2">
-                Convenient Johar Town Location
-              </h3>
-              <p className="text-xs sm:text-sm text-blue-100 leading-relaxed">
-                Centrally located on Maulana Shaukat Ali Rd with easy parking, modern diagnostic suites, and prompt appointments.
-              </p>
-            </div>
-            <div className="mt-4 pt-3 border-t border-blue-500">
-              <button
-                onClick={onOpenBooking}
-                className="w-full py-2 bg-white text-blue-600 font-bold rounded-xl text-xs hover:bg-blue-50 transition-colors shadow-xs"
-              >
-                Schedule Appointment Now
-              </button>
-            </div>
-          </div>
         </div>
       </section>
 
       {/* ========================================================= */}
-      {/* 6. FAQ SECTION                                            */}
+      {/* 5. FAQ SECTION                                            */}
       {/* ========================================================= */}
       <section className="bg-slate-50 py-16 border-y border-slate-200">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -460,35 +357,11 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, onOpenBooking 
               );
             })}
           </div>
-
-          <div className="mt-8 text-center bg-white p-6 rounded-2xl border border-slate-200 shadow-sm">
-            <p className="text-sm font-semibold text-slate-800">
-              Have a specific ear, nose, or throat question not listed here?
-            </p>
-            <div className="mt-3 flex flex-wrap justify-center gap-3">
-              <a
-                href={DOCTOR_INFO.whatsappUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-4 py-2 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-bold rounded-xl transition-colors shadow-xs"
-              >
-                <MessageCircle className="w-4 h-4" />
-                <span>Ask on WhatsApp ({DOCTOR_INFO.phone})</span>
-              </a>
-              <button
-                onClick={onOpenBooking}
-                className="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white text-xs font-bold rounded-xl transition-colors shadow-xs"
-              >
-                <Calendar className="w-4 h-4" />
-                <span>Book Direct Clinic Consultation</span>
-              </button>
-            </div>
-          </div>
         </div>
       </section>
 
       {/* ========================================================= */}
-      {/* 7. BOTTOM CTA                                             */}
+      {/* 6. BOTTOM CTA                                             */}
       {/* ========================================================= */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="bg-slate-900 text-white rounded-3xl p-8 sm:p-12 text-center space-y-4 border border-slate-800">

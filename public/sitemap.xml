@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+  
+  <!-- Primary Landing Page -->
+  <url>
+    <loc>https://drhasnainhaiderent.com/</loc>
+    <lastmod>2026-09-07</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- All Services Directory -->
+  <url>
+    <loc>https://drhasnainhaiderent.com/services</loc>
+    <lastmod>2026-09-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Dedicated ENT Service: Ear Problems Treatment -->
+  <url>
+    <loc>https://drhasnainhaiderent.com/services/ear-treatment</loc>
+    <lastmod>2026-09-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <!-- Dedicated ENT Service: Sinus Treatment & FESS Surgery -->
+  <url>
+    <loc>https://drhasnainhaiderent.com/services/sinus-treatment</loc>
+    <lastmod>2026-09-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <!-- Dedicated ENT Service: Nose & Nasal Disorders (Septoplasty / DNS) -->
+  <url>
+    <loc>https://drhasnainhaiderent.com/services/nose-disorders</loc>
+    <lastmod>2026-09-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <!-- Dedicated ENT Service: Throat Problems & Tonsillitis -->
+  <url>
+    <loc>https://drhasnainhaiderent.com/services/throat-problems</loc>
+    <lastmod>2026-09-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <!-- Dedicated ENT Service: Allergy Treatment -->
+  <url>
+    <loc>https://drhasnainhaiderent.com/services/allergy-treatment</loc>
+    <lastmod>2026-09-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <!-- Dedicated ENT Service: Hearing & Balance (Vertigo / BPPV) -->
+  <url>
+    <loc>https://drhasnainhaiderent.com/services/hearing-balance</loc>
+    <lastmod>2026-09-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <!-- Dedicated ENT Service: Snoring & Sleep Related ENT Issues -->
+  <url>
+    <loc>https://drhasnainhaiderent.com/services/snoring-sleep</loc>
+    <lastmod>2026-09-07</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <!-- About Doctor & Qualifications Page -->
+  <url>
+    <loc>https://drhasnainhaiderent.com/about</loc>
+    <lastmod>2026-09-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Clinic Location, Contact & Appointment Booking -->
+  <url>
+    <loc>https://drhasnainhaiderent.com/contact</loc>
+    <lastmod>2026-09-07</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+</urlset>
