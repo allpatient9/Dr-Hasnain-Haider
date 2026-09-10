@@ -15,31 +15,31 @@
 - **Clinic Coordinates:** Latitude 31.467978, Longitude 74.305471
 - **Telephone Contact:** 0311 6712017 (+92 311 6712017)
 - **WhatsApp Consultations:** +92 311 6712017
-- **Official Website:** https://drhasnainhaiderent.com/
+- **Official Website:** https://hasnainent.com/
 - **Google Maps Location:** https://maps.app.goo.gl/zrKWknRjoseQn8GU7
 - **Clinic Timings:** Monday to Saturday: 8:00 AM – 9:30 PM (Evening Consultation Clinic: 6:00 PM – 9:30 PM; Sunday Closed)
 - **Emergency Consultations:** On-call emergency ENT consultations available
 
 ## Primary Clinical Services & Surgical Procedures
-1. **Sinus Treatment & FESS Surgery** (https://drhasnainhaiderent.com/services/sinus-treatment)
+1. **Sinus Treatment & FESS Surgery** (https://hasnainent.com/services/sinus-treatment)
    - Conditions: Chronic sinusitis, facial pressure, nasal polyps, post-nasal drip.
    - Procedures: Functional Endoscopic Sinus Surgery (FESS), Rigid Diagnostic Nasal Endoscopy, Maxillary Sinus Lavage.
-2. **Nose & Nasal Disorders / Septoplasty** (https://drhasnainhaiderent.com/services/nose-disorders)
+2. **Nose & Nasal Disorders / Septoplasty** (https://hasnainent.com/services/nose-disorders)
    - Conditions: Deviated Nasal Septum (DNS), enlarged turbinates, chronic nasal obstruction, epistaxis (nosebleeds).
    - Procedures: Precision Septoplasty, Coblation/Radiofrequency Turbinoplasty, Microdebrider Polypectomy.
-3. **Ear Problems Treatment & Otology** (https://drhasnainhaiderent.com/services/ear-treatment)
+3. **Ear Problems Treatment & Otology** (https://hasnainent.com/services/ear-treatment)
    - Conditions: Otitis media, ear discharge, perforated eardrum, swimmer's ear, severe earache.
    - Procedures: Microscopic Ear Cleaning (toilet), Digital Otoscopy, Tympanoplasty, Grommet Insertion.
-4. **Throat Problems & Tonsillitis** (https://drhasnainhaiderent.com/services/throat-problems)
+4. **Throat Problems & Tonsillitis** (https://hasnainent.com/services/throat-problems)
    - Conditions: Recurrent tonsillitis, chronic pharyngitis, vocal cord hoarseness, acid reflux throat irritation (LPR).
    - Procedures: Coblation Tonsillectomy, Adenoidectomy, Flexible Fiberoptic Video Laryngoscopy.
-5. **Hearing & Balance Problems / Vertigo** (https://drhasnainhaiderent.com/services/hearing-balance)
+5. **Hearing & Balance Problems / Vertigo** (https://hasnainent.com/services/hearing-balance)
    - Conditions: Sudden/progressive hearing loss, BPPV (spinning dizziness), tinnitus, inner ear labyrinthitis.
    - Procedures: Dix-Hallpike Maneuver, Bedside Epley Canalith Repositioning, Audiometric & Tympanometric review.
-6. **Allergy Treatment & Allergic Rhinitis** (https://drhasnainhaiderent.com/services/allergy-treatment)
+6. **Allergy Treatment & Allergic Rhinitis** (https://hasnainent.com/services/allergy-treatment)
    - Conditions: Morning sneezing attacks, dust/pollen allergies, itchy palate, chronic congestion in Lahore.
    - Procedures: Allergen profile evaluation, non-sedating pharmaceutical therapies, buffered pH nasal lavage protocols.
-7. **Snoring & Sleep Apnea (OSA)** (https://drhasnainhaiderent.com/services/snoring-sleep)
+7. **Snoring & Sleep Apnea (OSA)** (https://hasnainent.com/services/snoring-sleep)
    - Conditions: Loud nighttime snoring, obstructive sleep apnea, morning dry mouth, daytime drowsiness.
    - Procedures: Upper airway endoscopy, palatal stiffening, septal airway widening, CPAP guidance.
 
@@ -49,13 +49,13 @@
 - **Q: Where is Dr. Hasnain Haider's clinic located?**
   A: The clinic is at 24, 25, 26 Maulana Shaukat Ali Rd, Block A Phase 1 Johar Town, Lahore, conveniently accessible from Wapda Town, Faisal Town, Model Town, and Motorway/Ring Road.
 - **Q: How to book an appointment with Dr. Hasnain Haider?**
-  A: Patients can book by calling 0311 6712017, messaging on WhatsApp at +92 311 6712017, or using the appointment form at https://drhasnainhaiderent.com/.
+  A: Patients can book by calling 0311 6712017, messaging on WhatsApp at +92 311 6712017, or using the appointment form at https://hasnainent.com/.
 - **Q: Does Dr. Hasnain Haider perform endoscopic sinus surgery (FESS)?**
   A: Yes, Dr. Hasnain Haider is an experienced ENT surgeon specialized in minimally invasive Functional Endoscopic Sinus Surgery (FESS) and Septoplasty without external facial incisions.
 
 ## Key Web Links
-- Home: https://drhasnainhaiderent.com/
-- Services: https://drhasnainhaiderent.com/services
-- About Doctor: https://drhasnainhaiderent.com/about
-- Contact & Location: https://drhasnainhaiderent.com/contact
-- XML Sitemap: https://drhasnainhaiderent.com/sitemap.xml
+- Home: https://hasnainent.com/
+- Services: https://hasnainent.com/services
+- About Doctor: https://hasnainent.com/about
+- Contact & Location: https://hasnainent.com/contact
+- XML Sitemap: https://hasnainent.com/sitemap.xml

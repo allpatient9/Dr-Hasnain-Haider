@@ -50,34 +50,41 @@ interface HomePageProps {
 
 export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenBooking }) => {
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0);
-  const [doctorImg, setDoctorImg] = useState<string>(() => {
-    return localStorage.getItem('dr_hasnain_haider_custom_photo') || DOCTOR_INFO.doctorImage;
-  });
+  const [doctorImg, setDoctorImg] = useState<string>(DOCTOR_INFO.doctorImage);
   const [isDraggingOver, setIsDraggingOver] = useState(false);
   const [uploadSuccess, setUploadSuccess] = useState(false);
+  const [syncMessage, setSyncMessage] = useState<string>('');
   const fileInputRef = React.useRef<HTMLInputElement>(null);
 
   const handlePhotoUpload = (file: File) => {
     if (!file.type.startsWith('image/')) return;
     const reader = new FileReader();
-    reader.onload = (e) => {
+    reader.onload = async (e) => {
       const dataUrl = e.target?.result as string;
       if (dataUrl) {
         setDoctorImg(dataUrl);
-        try {
-          localStorage.setItem('dr_hasnain_haider_custom_photo', dataUrl);
-        } catch (err) {
-          console.warn('Could not save to localStorage:', err);
-        }
         setUploadSuccess(true);
-        setTimeout(() => setUploadSuccess(false), 3000);
+        setSyncMessage('Photo updated in preview');
 
-        // Also persist to server endpoint
-        fetch('/api/upload-doctor-photo', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ dataUrl }),
-        }).catch((err) => console.log('Server save notification:', err));
+        // Persist and synchronize to server backend
+        try {
+          const res = await fetch('/api/upload-doctor-photo', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ dataUrl }),
+          });
+          const data = await res.json();
+          if (data.success) {
+            setSyncMessage('Synced & saved to server files');
+          }
+        } catch (err) {
+          console.log('Hostinger static mode note:', err);
+        }
+
+        setTimeout(() => {
+          setUploadSuccess(false);
+          setSyncMessage('');
+        }, 4000);
       }
     };
     reader.readAsDataURL(file);
@@ -211,8 +218,8 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenBooking })
                   <img
                     src={doctorImg}
                     onError={() => {
-                      if (doctorImg !== '/images/Dr. Hasnain Haider ENT Specialist.jpg') {
-                        setDoctorImg('/images/Dr. Hasnain Haider ENT Specialist.jpg');
+                      if (doctorImg !== DOCTOR_INFO.doctorImage) {
+                        setDoctorImg(DOCTOR_INFO.doctorImage);
                       }
                     }}
                     alt="Dr. Hasnain Haider - Best ENT Specialist in Lahore"
@@ -234,7 +241,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenBooking })
                   />
 
                   {/* Direct Update Photo Action Button */}
-                  <div className="absolute top-3.5 right-3.5 z-20">
+                  <div className="absolute top-3.5 right-3.5 z-20 flex flex-col items-end gap-1">
                     <button
                       onClick={() => fileInputRef.current?.click()}
                       type="button"
@@ -245,7 +252,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenBooking })
                       {uploadSuccess ? (
                         <>
                           <Check className="w-3.5 h-3.5 text-emerald-400" />
-                          <span>Photo Updated</span>
+                          <span>{syncMessage || 'Photo Updated'}</span>
                         </>
                       ) : (
                         <>

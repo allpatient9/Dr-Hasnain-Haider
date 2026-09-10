@@ -58,14 +58,14 @@ export default function App() {
     let title = 'Dr. Hasnain Haider - Best ENT Specialist in Lahore';
     let description =
       'Consult Dr. Hasnain Haider (MBBS, FCPS), leading ENT Specialist and ENT Surgeon in Johar Town, Lahore. Expert treatments for sinus, ear infections, deviated nasal septum, tonsils, vertigo, and hearing loss.';
-    let canonicalUrl = 'https://drhasnainhaiderent.com/';
+    let canonicalUrl = 'https://hasnainent.com/';
     let dynamicSchema: Record<string, unknown> | null = null;
 
     if (currentPage === 'service-detail' && selectedServiceId) {
       const srv = SERVICES_DATA.find((s) => s.id === selectedServiceId) || SERVICES_DATA[0];
       title = `${srv.title} in Lahore | Dr. Hasnain Haider ENT Specialist`;
       description = `${srv.shortDesc} Expert diagnosis, conservative care & modern surgical protocols by Dr. Hasnain Haider in Johar Town, Lahore.`;
-      canonicalUrl = `https://drhasnainhaiderent.com/services/${srv.id}`;
+      canonicalUrl = `https://hasnainent.com/services/${srv.id}`;
       dynamicSchema = {
         '@context': 'https://schema.org',
         '@type': 'MedicalProcedure',
@@ -95,12 +95,12 @@ export default function App() {
       title = 'ENT Services & Surgical Treatments in Lahore | Dr. Hasnain Haider';
       description =
         'Comprehensive otolaryngology services: FESS sinus surgery, septoplasty for DNS, ear microsurgery, coblation tonsillectomy, allergy and vertigo treatments in Lahore.';
-      canonicalUrl = 'https://drhasnainhaiderent.com/services';
+      canonicalUrl = 'https://hasnainent.com/services';
     } else if (currentPage === 'about') {
       title = 'About Dr. Hasnain Haider (MBBS, FCPS) | Best ENT Surgeon in Lahore';
       description =
         'Learn about Dr. Hasnain Haider, Consultant ENT Specialist and Head & Neck Surgeon in Lahore with 9+ years of experience, 4,500+ successful ENT surgeries, and PMC/PMDC verification.';
-      canonicalUrl = 'https://drhasnainhaiderent.com/about';
+      canonicalUrl = 'https://hasnainent.com/about';
       dynamicSchema = {
         '@context': 'https://schema.org',
         '@type': 'Physician',
@@ -127,7 +127,7 @@ export default function App() {
       title = 'Contact Clinic & Appointments | Dr. Hasnain Haider ENT Specialist Johar Town';
       description =
         'Visit Dr. Hasnain Haider ENT Clinic at 24-26 Maulana Shaukat Ali Rd, Block A Phase 1 Johar Town, Lahore. Timings: Mon-Sat 8:00 AM - 9:30 PM. Call or WhatsApp 0311 6712017.';
-      canonicalUrl = 'https://drhasnainhaiderent.com/contact';
+      canonicalUrl = 'https://hasnainent.com/contact';
     }
 
     // Set document title
