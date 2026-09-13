@@ -36,6 +36,12 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, onOpenBooking 
       year: 'Postgraduate Fellowship',
     },
     {
+      degree: 'Head and Neck Cancer Surgery Training',
+      institution: 'Shaukat Khanum Memorial Cancer Hospital & Research Centre (Lahore)',
+      detail: 'Dedicated advanced clinical training in the Department of Surgical Oncology',
+      year: 'Specialized Oncology Training',
+    },
+    {
       degree: 'MBBS (Bachelor of Medicine, Bachelor of Surgery)',
       institution: 'Top Medical University of Pakistan',
       detail: 'Registered Medical Practitioner with comprehensive clinical honors',
@@ -259,8 +265,9 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, onOpenBooking 
               </div>
             </div>
 
-            <div className="p-4 bg-slate-800 rounded-xl border border-slate-700 text-xs text-slate-200 leading-relaxed">
-              📍 <strong>Johar Town Clinic:</strong> 24, 25, 26 Maulana Shaukat Ali Rd, Block A Phase 1 Johar Town, Lahore. Timings: 5:00 PM – 9:00 PM (Monday – Saturday).
+            <div className="p-4 bg-slate-800 rounded-xl border border-slate-700 text-xs text-slate-200 leading-relaxed space-y-1.5">
+              <div>📍 <strong>Primary Clinic (Johar Town):</strong> 24, 25, 26 Maulana Shaukat Ali Rd, Block A Phase 1 Johar Town, Lahore (Iqra Medical Complex Building). Mon–Sat: 8:00 AM – 9:30 PM.</div>
+              <div>🏥 <strong>Secondary Associate Location:</strong> ENT and GYNAE Associates, Block E2, Wapda Town Phase 1, Lahore.</div>
             </div>
           </div>
         </div>

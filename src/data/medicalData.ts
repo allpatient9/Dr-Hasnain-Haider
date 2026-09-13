@@ -33,6 +33,8 @@ export const DOCTOR_INFO = {
   clinicImage: '/images/clinic-interior.jpg',
   clinicLogo: '/images/ent-clinic-logo.jpg',
   googleMapsLink: 'https://maps.app.goo.gl/zrKWknRjoseQn8GU7',
+  marhamLink: 'https://www.marham.pk/doctors/lahore/ent-surgeon/dr-hasnain-haider',
+  farooqHospitalLink: 'https://www.farooqhospitals.com/consultant/b717ccf1-1804-4a8a-85c4-8dac1985277f',
   googleMapsEmbed: 'https://maps.google.com/maps?q=31.467978146743004,74.30547076800705&hl=en&z=16&output=embed',
   latitude: 31.467978146743004,
   longitude: 74.30547076800705,

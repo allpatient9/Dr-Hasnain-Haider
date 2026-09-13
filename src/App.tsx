@@ -155,6 +155,43 @@ export default function App() {
         ],
         telephone: '+923116712017',
         url: canonicalUrl,
+        sameAs: [
+          'https://maps.app.goo.gl/zrKWknRjoseQn8GU7',
+          'https://www.marham.pk/doctors/lahore/ent-surgeon/dr-hasnain-haider',
+          'https://www.farooqhospitals.com/consultant/b717ccf1-1804-4a8a-85c4-8dac1985277f',
+        ],
+        alumniOf: [
+          {
+            '@type': 'EducationalOrganization',
+            name: 'College of Physicians and Surgeons Pakistan (FCPS Otolaryngology)',
+          },
+          {
+            '@type': 'Hospital',
+            name: 'Shaukat Khanum Memorial Cancer Hospital & Research Centre (Department of Surgical Oncology)',
+          },
+        ],
+        hospitalAffiliation: [
+          {
+            '@type': 'Hospital',
+            name: 'Iqra Medical Complex, 24-26 Maulana Shaukat Ali Rd, Johar Town, Lahore',
+          },
+          {
+            '@type': 'MedicalClinic',
+            name: 'ENT and GYNAE Associates, Wapda Town, Lahore',
+          },
+          {
+            '@type': 'Hospital',
+            name: 'Akhtar Saeed Trust Hospital, Lahore',
+          },
+        ],
+        address: {
+          '@type': 'PostalAddress',
+          streetAddress: '24, 25, 26 Maulana Shaukat Ali Rd, Block A Phase 1 Johar Town',
+          addressLocality: 'Lahore',
+          addressRegion: 'Punjab',
+          postalCode: '54782',
+          addressCountry: 'PK',
+        },
       };
     } else if (currentPage === 'contact') {
       title = 'Contact Clinic & Appointments | Dr. Hasnain Haider ENT Specialist Johar Town';
