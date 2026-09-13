@@ -167,6 +167,7 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenBooking })
                     }}
                     alt="Dr. Hasnain Haider - Best ENT Specialist in Lahore"
                     className="w-full h-full object-cover object-top"
+                    loading="eager"
                     referrerPolicy="no-referrer"
                   />
                 </div>

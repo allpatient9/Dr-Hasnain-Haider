@@ -370,8 +370,10 @@ export const ServiceDetailPage: React.FC<ServiceDetailPageProps> = ({
               <div className="flex items-center gap-3">
                 <img
                   src={DOCTOR_INFO.doctorImage}
-                  alt={DOCTOR_INFO.name}
+                  alt={`${DOCTOR_INFO.name} - Best ENT Specialist in Lahore`}
                   className="w-14 h-14 rounded-full object-cover border-2 border-blue-600 shadow-xs shrink-0"
+                  loading="eager"
+                  referrerPolicy="no-referrer"
                 />
                 <div>
                   <h4 className="font-bold text-slate-900 text-sm sm:text-base leading-tight">

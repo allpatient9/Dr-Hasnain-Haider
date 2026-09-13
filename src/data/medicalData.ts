@@ -29,7 +29,7 @@ export const DOCTOR_INFO = {
     { day: 'Sunday', hours: 'Closed', isOpen: false },
   ],
   emergencyAvailability: 'Emergency on-call consults available',
-  doctorImage: '/images/dr-hasnain-haider.jpg',
+  doctorImage: '/images/dr-hasnain-haider-ent.jpg',
   clinicImage: '/images/clinic-interior.jpg',
   clinicLogo: '/images/ent-clinic-logo.jpg',
   googleMapsLink: 'https://maps.app.goo.gl/zrKWknRjoseQn8GU7',

@@ -120,6 +120,7 @@ export const AboutPage: React.FC<AboutPageProps> = ({ onNavigate, onOpenBooking 
                   }}
                   alt="Dr. Hasnain Haider ENT Specialist in Lahore"
                   className="w-full aspect-[3/4] object-cover"
+                  loading="eager"
                   referrerPolicy="no-referrer"
                 />
                 <div className="p-4 bg-slate-950/90 border-t border-slate-700/80">

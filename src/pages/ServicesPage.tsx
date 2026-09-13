@@ -66,9 +66,18 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({
       {/* ========================================================= */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-4xl mx-auto space-y-4">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-50 text-blue-700 text-xs font-bold uppercase tracking-wider border border-blue-100">
-            <ShieldCheck className="w-4 h-4 text-blue-600" />
-            <span>Comprehensive Otolaryngology Care • Johar Town, Lahore</span>
+          <div className="inline-flex items-center gap-3 p-1.5 pr-4 bg-white border border-slate-200 rounded-full mx-auto shadow-xs">
+            <img
+              src={DOCTOR_INFO.doctorImage}
+              alt="Dr. Hasnain Haider - Best ENT Specialist & Surgeon in Lahore"
+              className="w-11 h-11 rounded-full object-cover border-2 border-blue-600 shadow-xs"
+              loading="eager"
+              referrerPolicy="no-referrer"
+            />
+            <div className="text-left">
+              <p className="text-xs font-bold text-slate-900 leading-tight">All Procedures Performed by {DOCTOR_INFO.name}</p>
+              <p className="text-[11px] text-blue-600 font-medium">{DOCTOR_INFO.degrees} • {DOCTOR_INFO.experienceYears} Clinical Experience</p>
+            </div>
           </div>
 
           <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight">

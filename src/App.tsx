@@ -55,6 +55,7 @@ export default function App() {
 
   // Update Dynamic SEO & Schema metadata per page
   useEffect(() => {
+    const doctorImageUrl = 'https://hasnainent.com/images/dr-hasnain-haider-ent.jpg';
     let title = 'Dr. Hasnain Haider - Best ENT Specialist in Lahore';
     let description =
       'Consult Dr. Hasnain Haider (MBBS, FCPS), leading ENT Specialist and ENT Surgeon in Johar Town, Lahore. Expert treatments for sinus, ear infections, deviated nasal septum, tonsils, vertigo, and hearing loss.';
@@ -72,9 +73,16 @@ export default function App() {
         name: `${srv.title} in Lahore`,
         procedureType: 'https://health-lifesci.schema.org/MedicalProcedure',
         description: srv.shortDesc,
+        image: doctorImageUrl,
+        primaryImageOfPage: {
+          '@type': 'ImageObject',
+          url: doctorImageUrl,
+          caption: `${DOCTOR_INFO.name} - ${srv.title} Specialist in Lahore`,
+        },
         provider: {
           '@type': 'Physician',
           name: DOCTOR_INFO.name,
+          image: doctorImageUrl,
           medicalSpecialty: 'https://health-lifesci.schema.org/Otolaryngologic',
           telephone: '+923116712017',
           address: {
@@ -96,6 +104,25 @@ export default function App() {
       description =
         'Comprehensive otolaryngology services: FESS sinus surgery, septoplasty for DNS, ear microsurgery, coblation tonsillectomy, allergy and vertigo treatments in Lahore.';
       canonicalUrl = 'https://hasnainent.com/services';
+      dynamicSchema = {
+        '@context': 'https://schema.org',
+        '@type': 'MedicalWebPage',
+        name: 'ENT Services by Dr. Hasnain Haider in Lahore',
+        description,
+        url: canonicalUrl,
+        image: doctorImageUrl,
+        primaryImageOfPage: {
+          '@type': 'ImageObject',
+          url: doctorImageUrl,
+          caption: `${DOCTOR_INFO.name} - ENT Services and Surgeries in Lahore`,
+        },
+        author: {
+          '@type': 'Physician',
+          name: DOCTOR_INFO.name,
+          image: doctorImageUrl,
+          telephone: '+923116712017',
+        },
+      };
     } else if (currentPage === 'about') {
       title = 'About Dr. Hasnain Haider (MBBS, FCPS) | Best ENT Surgeon in Lahore';
       description =
@@ -105,6 +132,12 @@ export default function App() {
         '@context': 'https://schema.org',
         '@type': 'Physician',
         name: DOCTOR_INFO.name,
+        image: doctorImageUrl,
+        primaryImageOfPage: {
+          '@type': 'ImageObject',
+          url: doctorImageUrl,
+          caption: `${DOCTOR_INFO.name} - Best ENT Surgeon in Lahore`,
+        },
         medicalSpecialty: 'https://health-lifesci.schema.org/Otolaryngologic',
         jobTitle: DOCTOR_INFO.title,
         honorificPrefix: 'Dr.',
@@ -128,6 +161,31 @@ export default function App() {
       description =
         'Visit Dr. Hasnain Haider ENT Clinic at 24-26 Maulana Shaukat Ali Rd, Block A Phase 1 Johar Town, Lahore. Timings: Mon-Sat 8:00 AM - 9:30 PM. Call or WhatsApp 0311 6712017.';
       canonicalUrl = 'https://hasnainent.com/contact';
+      dynamicSchema = {
+        '@context': 'https://schema.org',
+        '@type': 'ContactPage',
+        name: 'Contact Dr. Hasnain Haider ENT Clinic Johar Town Lahore',
+        description,
+        url: canonicalUrl,
+        image: doctorImageUrl,
+        primaryImageOfPage: {
+          '@type': 'ImageObject',
+          url: doctorImageUrl,
+          caption: `${DOCTOR_INFO.name} - ENT Specialist Clinic Johar Town Lahore`,
+        },
+        mainEntity: {
+          '@type': 'Physician',
+          name: DOCTOR_INFO.name,
+          image: doctorImageUrl,
+          telephone: '+923116712017',
+          address: {
+            '@type': 'PostalAddress',
+            streetAddress: DOCTOR_INFO.streetAddress,
+            addressLocality: 'Lahore',
+            addressCountry: 'PK',
+          },
+        },
+      };
     }
 
     // Set document title
@@ -155,6 +213,31 @@ export default function App() {
     if (ogDesc) ogDesc.setAttribute('content', description);
     const ogUrl = document.querySelector('meta[property="og:url"]');
     if (ogUrl) ogUrl.setAttribute('content', canonicalUrl);
+
+    // Enforce Doctor Image across OpenGraph & Twitter Cards on every page
+    let ogImg = document.querySelector('meta[property="og:image"]');
+    if (!ogImg) {
+      ogImg = document.createElement('meta');
+      ogImg.setAttribute('property', 'og:image');
+      document.head.appendChild(ogImg);
+    }
+    ogImg.setAttribute('content', doctorImageUrl);
+
+    let ogImgAlt = document.querySelector('meta[property="og:image:alt"]');
+    if (!ogImgAlt) {
+      ogImgAlt = document.createElement('meta');
+      ogImgAlt.setAttribute('property', 'og:image:alt');
+      document.head.appendChild(ogImgAlt);
+    }
+    ogImgAlt.setAttribute('content', `${DOCTOR_INFO.name} - Best ENT Specialist & Surgeon in Lahore`);
+
+    let twImg = document.querySelector('meta[name="twitter:image"]');
+    if (!twImg) {
+      twImg = document.createElement('meta');
+      twImg.setAttribute('name', 'twitter:image');
+      document.head.appendChild(twImg);
+    }
+    twImg.setAttribute('content', doctorImageUrl);
 
     // Dynamic Per-Page Schema Injection
     let schemaScript = document.getElementById('dynamic-page-schema') as HTMLScriptElement | null;

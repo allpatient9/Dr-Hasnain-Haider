@@ -70,8 +70,22 @@ export const ContactPage: React.FC<ContactPageProps> = ({ onNavigate: _onNavigat
 
   return (
     <div className="py-8 space-y-10">
-      {/* 1. Page Header */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-3">
+      {/* 1. Page Header with Doctor Identification */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-4">
+        <div className="inline-flex items-center gap-3 p-1.5 pr-4 bg-blue-50 border border-blue-200/80 rounded-full mx-auto shadow-xs">
+          <img
+            src={DOCTOR_INFO.doctorImage}
+            alt="Dr. Hasnain Haider - Best ENT Specialist in Lahore"
+            className="w-10 h-10 rounded-full object-cover border border-white shadow-xs"
+            loading="eager"
+            referrerPolicy="no-referrer"
+          />
+          <div className="text-left">
+            <p className="text-xs font-bold text-slate-900 leading-tight">Dr. Hasnain Haider (MBBS, FCPS)</p>
+            <p className="text-[11px] text-blue-700 font-medium">Consultant ENT Surgeon • Johar Town, Lahore</p>
+          </div>
+        </div>
+
         <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-900 tracking-tight">
           Contact Us & Book an Appointment
         </h1>
