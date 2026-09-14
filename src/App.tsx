@@ -24,34 +24,57 @@ export default function App() {
   const [bookingServicePrefill, setBookingServicePrefill] = useState<string | undefined>(undefined);
   const [showScrollTop, setShowScrollTop] = useState(false);
 
-  // Parse hash to determine initial route
-  const parseHashRoute = useCallback(() => {
-    const hash = window.location.hash.replace(/^#\/?/, '');
-    if (!hash || hash === 'home') {
+  // Parse pathname to determine route (Clean HTML5 URL without #)
+  const parseRoute = useCallback(() => {
+    // 1. Check pathname first (e.g., /about, /services, /services/sinus-treatment, /contact)
+    let path = window.location.pathname.replace(/\/+$/, '') || '/';
+
+    // 2. Seamless Migration: If user arrives with a legacy hash URL (e.g. #about, #services/sinus-treatment)
+    const rawHash = window.location.hash.replace(/^#\/?/, '').replace(/\/+$/, '');
+    if (path === '/' && rawHash) {
+      if (rawHash === 'about') path = '/about';
+      else if (rawHash === 'services') path = '/services';
+      else if (rawHash.startsWith('services/')) path = `/${rawHash}`;
+      else if (rawHash === 'contact') path = '/contact';
+
+      // Clean up the address bar immediately without reloading page
+      if (path !== '/') {
+        window.history.replaceState(null, '', path);
+      }
+    }
+
+    if (path === '/' || path === '/home') {
       setCurrentPage('home');
       setSelectedServiceId(undefined);
-    } else if (hash.startsWith('services/')) {
-      const srvId = hash.replace('services/', '');
+    } else if (path.startsWith('/services/')) {
+      const srvId = path.replace('/services/', '');
       setCurrentPage('service-detail');
       setSelectedServiceId(srvId);
-    } else if (hash === 'services') {
+    } else if (path === '/services') {
       setCurrentPage('services');
       setSelectedServiceId(undefined);
-    } else if (hash === 'about') {
+    } else if (path === '/about') {
       setCurrentPage('about');
       setSelectedServiceId(undefined);
-    } else if (hash === 'contact') {
+    } else if (path === '/contact') {
       setCurrentPage('contact');
+      setSelectedServiceId(undefined);
+    } else {
+      setCurrentPage('home');
       setSelectedServiceId(undefined);
     }
   }, []);
 
   useEffect(() => {
-    parseHashRoute();
-    const handleHashChange = () => parseHashRoute();
-    window.addEventListener('hashchange', handleHashChange);
-    return () => window.removeEventListener('hashchange', handleHashChange);
-  }, [parseHashRoute]);
+    parseRoute();
+    const handleLocationChange = () => parseRoute();
+    window.addEventListener('popstate', handleLocationChange);
+    window.addEventListener('hashchange', handleLocationChange);
+    return () => {
+      window.removeEventListener('popstate', handleLocationChange);
+      window.removeEventListener('hashchange', handleLocationChange);
+    };
+  }, [parseRoute]);
 
   // Update Dynamic SEO & Schema metadata per page
   useEffect(() => {
@@ -300,14 +323,31 @@ export default function App() {
   }, []);
 
   const handleNavigate = (page: PageType, serviceId?: string) => {
-    if (page === 'service-detail' || (page === 'services' && serviceId)) {
+    let targetPath = '/';
+    if (page === 'service-detail' && serviceId) {
+      targetPath = `/services/${serviceId}`;
       setCurrentPage('service-detail');
       setSelectedServiceId(serviceId);
-      window.location.hash = serviceId ? `services/${serviceId}` : 'services';
+    } else if (page === 'services') {
+      targetPath = '/services';
+      setCurrentPage('services');
+      setSelectedServiceId(undefined);
+    } else if (page === 'about') {
+      targetPath = '/about';
+      setCurrentPage('about');
+      setSelectedServiceId(undefined);
+    } else if (page === 'contact') {
+      targetPath = '/contact';
+      setCurrentPage('contact');
+      setSelectedServiceId(undefined);
     } else {
-      setCurrentPage(page);
-      setSelectedServiceId(serviceId);
-      window.location.hash = page === 'home' ? '' : page;
+      targetPath = '/';
+      setCurrentPage('home');
+      setSelectedServiceId(undefined);
+    }
+
+    if (window.location.pathname !== targetPath || window.location.hash) {
+      window.history.pushState(null, '', targetPath);
     }
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
