@@ -8,7 +8,10 @@
   RewriteRule . /index.html [L]
 </IfModule>
 
-# Ensure correct MIME type for XML sitemap
+# Ensure correct MIME type for XML sitemap and webmanifest
 <IfModule mod_mime.c>
   AddType application/xml .xml
+  AddType application/manifest+json .webmanifest
+  AddType image/x-icon .ico
 </IfModule>
+

@@ -311,14 +311,18 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenBooking })
             </p>
           </div>
 
-          <button
-            onClick={() => onNavigate('services')}
+          <a
+            href="/services"
+            onClick={(e) => {
+              e.preventDefault();
+              onNavigate('services');
+            }}
             id="view-all-services-btn"
             className="inline-flex items-center gap-1.5 text-sm font-bold text-blue-600 hover:text-blue-700 transition-colors"
           >
             <span>View All Detailed Services</span>
             <ArrowRight className="w-4 h-4" />
-          </button>
+          </a>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -358,14 +362,18 @@ export const HomePage: React.FC<HomePageProps> = ({ onNavigate, onOpenBooking })
               </div>
 
               <div className="pt-4 border-t border-slate-100 flex items-center justify-between">
-                <button
-                  onClick={() => onNavigate('service-detail', service.id)}
+                <a
+                  href={`/services/${service.id}`}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    onNavigate('service-detail', service.id);
+                  }}
                   id={`home-service-detail-${service.id}`}
                   className="text-xs font-bold text-slate-700 hover:text-blue-600 transition-colors inline-flex items-center gap-1"
                 >
                   <span>View Dedicated Service Page</span>
                   <ArrowRight className="w-3.5 h-3.5 text-blue-600" />
-                </button>
+                </a>
               </div>
             </div>
           ))}

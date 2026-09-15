@@ -81,35 +81,47 @@ export const ServiceDetailPage: React.FC<ServiceDetailPageProps> = ({
       <div className="bg-white border-b border-slate-200 sticky top-16 sm:top-20 z-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex flex-wrap items-center justify-between gap-3 text-xs sm:text-sm">
           <nav aria-label="Breadcrumb" className="flex items-center gap-1.5 sm:gap-2 text-slate-500 font-medium">
-            <button
-              onClick={() => onNavigate('home')}
+            <a
+              href="/"
+              onClick={(e) => {
+                e.preventDefault();
+                onNavigate('home');
+              }}
               id="breadcrumb-home-btn"
               className="hover:text-blue-600 transition-colors"
             >
               Home
-            </button>
+            </a>
             <ChevronRight className="w-3.5 h-3.5 text-slate-400" />
-            <button
-              onClick={() => onNavigate('services')}
+            <a
+              href="/services"
+              onClick={(e) => {
+                e.preventDefault();
+                onNavigate('services');
+              }}
               id="breadcrumb-services-btn"
               className="hover:text-blue-600 transition-colors"
             >
               Services
-            </button>
+            </a>
             <ChevronRight className="w-3.5 h-3.5 text-slate-400" />
             <span className="text-slate-900 font-bold truncate max-w-[200px] sm:max-w-xs">
               {currentService.title}
             </span>
           </nav>
 
-          <button
-            onClick={() => onNavigate('services')}
+          <a
+            href="/services"
+            onClick={(e) => {
+              e.preventDefault();
+              onNavigate('services');
+            }}
             id="back-all-services-btn"
             className="inline-flex items-center gap-1 text-xs font-semibold text-blue-600 hover:text-blue-700 transition-colors"
           >
             <ArrowLeft className="w-3.5 h-3.5" />
             <span>All ENT Services</span>
-          </button>
+          </a>
         </div>
       </div>
 
@@ -439,9 +451,13 @@ export const ServiceDetailPage: React.FC<ServiceDetailPageProps> = ({
                 {SERVICES_DATA.map((srv) => {
                   const isCurrent = srv.id === currentService.id;
                   return (
-                    <button
+                    <a
                       key={srv.id}
-                      onClick={() => onNavigate('service-detail', srv.id)}
+                      href={`/services/${srv.id}`}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        onNavigate('service-detail', srv.id);
+                      }}
                       id={`sidebar-switch-${srv.id}`}
                       className={`w-full text-left px-3.5 py-2.5 rounded-xl text-xs transition-all flex items-center justify-between gap-2 ${
                         isCurrent
@@ -454,19 +470,23 @@ export const ServiceDetailPage: React.FC<ServiceDetailPageProps> = ({
                         <span className="truncate">{srv.title}</span>
                       </div>
                       <ChevronRight className={`w-3.5 h-3.5 shrink-0 ${isCurrent ? 'text-blue-600' : 'text-slate-400'}`} />
-                    </button>
+                    </a>
                   );
                 })}
               </div>
 
               <div className="pt-2 border-t border-slate-100">
-                <button
-                  onClick={() => onNavigate('services')}
+                <a
+                  href="/services"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    onNavigate('services');
+                  }}
                   id="sidebar-view-all-services"
-                  className="w-full text-center text-xs font-bold text-blue-600 hover:underline pt-1"
+                  className="w-full block text-center text-xs font-bold text-blue-600 hover:underline pt-1"
                 >
                   View All Services Directory →
-                </button>
+                </a>
               </div>
             </div>
           </div>

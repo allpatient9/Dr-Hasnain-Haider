@@ -64,6 +64,14 @@ export const Navbar: React.FC<NavbarProps> = ({
     { id: 'contact', label: 'Contact' },
   ];
 
+  const getHref = (page: PageType, serviceId?: string) => {
+    if (page === 'service-detail' && serviceId) return `/services/${serviceId}`;
+    if (page === 'services') return '/services';
+    if (page === 'about') return '/about';
+    if (page === 'contact') return '/contact';
+    return '/';
+  };
+
   const handleNavClick = (page: PageType, serviceId?: string) => {
     onNavigate(page, serviceId);
     setMobileMenuOpen(false);
@@ -96,8 +104,12 @@ export const Navbar: React.FC<NavbarProps> = ({
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between">
           {/* Logo / Doctor Identity */}
-          <button
-            onClick={() => handleNavClick('home')}
+          <a
+            href="/"
+            onClick={(e) => {
+              e.preventDefault();
+              handleNavClick('home');
+            }}
             id="brand-logo-btn"
             className="flex items-center gap-3 text-left group focus:outline-none"
           >
@@ -117,7 +129,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                 ENT SPECIALIST & SURGEON
               </span>
             </div>
-          </button>
+          </a>
 
           {/* Desktop Navigation Links */}
           <div className="hidden md:flex items-center gap-8">
@@ -131,8 +143,12 @@ export const Navbar: React.FC<NavbarProps> = ({
                     onMouseEnter={() => setServicesDropdownOpen(true)}
                     onMouseLeave={() => setServicesDropdownOpen(false)}
                   >
-                    <button
-                      onClick={() => handleNavClick('services')}
+                    <a
+                      href="/services"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        handleNavClick('services');
+                      }}
                       id="nav-link-services"
                       className={`text-sm font-medium transition-colors inline-flex items-center gap-1 py-2 ${
                         currentPage === 'services' || currentPage === 'service-detail'
@@ -146,14 +162,18 @@ export const Navbar: React.FC<NavbarProps> = ({
                           servicesDropdownOpen ? 'rotate-180 text-blue-600' : 'opacity-60'
                         }`}
                       />
-                    </button>
+                    </a>
 
                     {/* Services Dropdown Menu */}
                     {servicesDropdownOpen && (
                       <div className="absolute left-1/2 -translate-x-1/2 top-full pt-1.5 w-72 z-50 animate-in fade-in zoom-in-95 duration-150">
                         <div className="bg-white rounded-2xl border border-slate-200 shadow-xl p-2 space-y-1">
-                          <button
-                            onClick={() => handleNavClick('services')}
+                          <a
+                            href="/services"
+                            onClick={(e) => {
+                              e.preventDefault();
+                              handleNavClick('services');
+                            }}
                             id="nav-dropdown-all-services"
                             className="w-full text-left px-3 py-2 rounded-xl text-xs font-bold text-blue-600 hover:bg-blue-50 transition-colors flex items-center justify-between"
                           >
@@ -162,7 +182,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                               <span>All Services Overview</span>
                             </div>
                             <ArrowRight className="w-3.5 h-3.5" />
-                          </button>
+                          </a>
 
                           <div className="h-px bg-slate-100 my-1" />
 
@@ -171,9 +191,13 @@ export const Navbar: React.FC<NavbarProps> = ({
                           </div>
 
                           {SERVICES_DATA.map((srv) => (
-                            <button
+                            <a
                               key={srv.id}
-                              onClick={() => handleNavClick('service-detail', srv.id)}
+                              href={`/services/${srv.id}`}
+                              onClick={(e) => {
+                                e.preventDefault();
+                                handleNavClick('service-detail', srv.id);
+                              }}
                               id={`nav-dropdown-${srv.id}`}
                               className="w-full text-left px-3 py-2 rounded-xl text-xs text-slate-700 hover:bg-slate-50 hover:text-blue-600 transition-colors flex items-center justify-between group"
                             >
@@ -182,7 +206,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                                 <span className="font-medium truncate">{srv.title}</span>
                               </div>
                               <ChevronRight className="w-3 h-3 text-slate-400 group-hover:text-blue-600 shrink-0" />
-                            </button>
+                            </a>
                           ))}
                         </div>
                       </div>
@@ -192,9 +216,13 @@ export const Navbar: React.FC<NavbarProps> = ({
               }
 
               return (
-                <button
+                <a
                   key={link.id}
-                  onClick={() => handleNavClick(link.id)}
+                  href={getHref(link.id)}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleNavClick(link.id);
+                  }}
                   id={`nav-link-${link.id}`}
                   className={`text-sm font-medium transition-colors inline-flex items-center gap-1 ${
                     currentPage === link.id
@@ -203,7 +231,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                   }`}
                 >
                   <span>{link.label}</span>
-                </button>
+                </a>
               );
             })}
           </div>
@@ -252,8 +280,12 @@ export const Navbar: React.FC<NavbarProps> = ({
                   return (
                     <div key={link.id} className="space-y-1">
                       <div className="flex items-center justify-between w-full rounded-xl">
-                        <button
-                          onClick={() => handleNavClick('services')}
+                        <a
+                          href="/services"
+                          onClick={(e) => {
+                            e.preventDefault();
+                            handleNavClick('services');
+                          }}
                           id="mobile-link-services"
                           className={`flex-1 text-left px-3 py-2.5 text-sm font-semibold rounded-xl ${
                             currentPage === 'services' || currentPage === 'service-detail'
@@ -262,7 +294,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                           }`}
                         >
                           Services
-                        </button>
+                        </a>
                         <button
                           onClick={() => setMobileServicesOpen(!mobileServicesOpen)}
                           id="mobile-toggle-services-sub"
@@ -280,23 +312,31 @@ export const Navbar: React.FC<NavbarProps> = ({
                       {/* Expanded mobile service sub-links */}
                       {mobileServicesOpen && (
                         <div className="pl-3 pr-1 py-1 space-y-1 border-l-2 border-blue-100 ml-3">
-                          <button
-                            onClick={() => handleNavClick('services')}
+                          <a
+                            href="/services"
+                            onClick={(e) => {
+                              e.preventDefault();
+                              handleNavClick('services');
+                            }}
                             className="w-full text-left px-3 py-2 text-xs font-bold text-blue-600 hover:bg-blue-50 rounded-lg flex items-center justify-between"
                           >
                             <span>All Services Overview</span>
                             <ArrowRight className="w-3.5 h-3.5" />
-                          </button>
+                          </a>
                           {SERVICES_DATA.map((srv) => (
-                            <button
+                            <a
                               key={srv.id}
-                              onClick={() => handleNavClick('service-detail', srv.id)}
+                              href={`/services/${srv.id}`}
+                              onClick={(e) => {
+                                e.preventDefault();
+                                handleNavClick('service-detail', srv.id);
+                              }}
                               id={`mobile-sub-${srv.id}`}
                               className="w-full text-left px-3 py-1.5 text-xs text-slate-600 hover:text-blue-600 hover:bg-slate-50 rounded-lg flex items-center gap-2"
                             >
                               {renderServiceIcon(srv.iconName)}
                               <span className="truncate">{srv.title}</span>
-                            </button>
+                            </a>
                           ))}
                         </div>
                       )}
@@ -305,9 +345,13 @@ export const Navbar: React.FC<NavbarProps> = ({
                 }
 
                 return (
-                  <button
+                  <a
                     key={link.id}
-                    onClick={() => handleNavClick(link.id)}
+                    href={getHref(link.id)}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handleNavClick(link.id);
+                    }}
                     id={`mobile-link-${link.id}`}
                     className={`w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-sm font-semibold ${
                       currentPage === link.id
@@ -317,7 +361,7 @@ export const Navbar: React.FC<NavbarProps> = ({
                   >
                     <span>{link.label}</span>
                     <ChevronRight className="w-4 h-4 text-slate-400" />
-                  </button>
+                  </a>
                 );
               })}
             </div>

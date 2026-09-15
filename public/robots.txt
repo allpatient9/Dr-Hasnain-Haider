@@ -11,6 +11,11 @@ Disallow: /api/
 User-agent: Googlebot
 Allow: /
 
+User-agent: Googlebot-Image
+Allow: /
+Allow: /favicon*
+Allow: /images/
+
 User-agent: Google-Extended
 Allow: /
 

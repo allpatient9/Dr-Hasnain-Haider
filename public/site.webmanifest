@@ -1,0 +1,33 @@
+{
+  "name": "Dr. Hasnain Haider - ENT Specialist & Surgeon Lahore",
+  "short_name": "Hasnain ENT",
+  "description": "Consultant ENT Specialist & Head and Neck Surgeon in Johar Town, Lahore.",
+  "icons": [
+    {
+      "src": "/favicon-48x48.png",
+      "sizes": "48x48",
+      "type": "image/png"
+    },
+    {
+      "src": "/favicon-96x96.png",
+      "sizes": "96x96",
+      "type": "image/png"
+    },
+    {
+      "src": "/favicon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/favicon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "start_url": "/",
+  "display": "standalone",
+  "theme_color": "#2563eb",
+  "background_color": "#ffffff"
+}

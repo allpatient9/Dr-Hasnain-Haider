@@ -63,44 +63,60 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenBooking }) => 
             </h4>
             <ul className="space-y-2.5 text-sm">
               <li>
-                <button
-                  onClick={() => handlePageClick('home')}
+                <a
+                  href="/"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handlePageClick('home');
+                  }}
                   id="footer-nav-home"
                   className="hover:text-blue-400 flex items-center gap-1.5 transition-colors text-slate-400 hover:text-white"
                 >
                   <ChevronRight className="w-3.5 h-3.5 text-slate-500" />
                   <span>Home</span>
-                </button>
+                </a>
               </li>
               <li>
-                <button
-                  onClick={() => handlePageClick('about')}
+                <a
+                  href="/about"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handlePageClick('about');
+                  }}
                   id="footer-nav-about"
                   className="hover:text-blue-400 flex items-center gap-1.5 transition-colors text-slate-400 hover:text-white"
                 >
                   <ChevronRight className="w-3.5 h-3.5 text-slate-500" />
                   <span>About Dr. Hasnain Haider</span>
-                </button>
+                </a>
               </li>
               <li>
-                <button
-                  onClick={() => handlePageClick('services')}
+                <a
+                  href="/services"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handlePageClick('services');
+                  }}
                   id="footer-nav-services"
                   className="hover:text-blue-400 flex items-center gap-1.5 transition-colors text-slate-400 hover:text-white"
                 >
                   <ChevronRight className="w-3.5 h-3.5 text-slate-500" />
                   <span>ENT Services & Treatments</span>
-                </button>
+                </a>
               </li>
               <li>
-                <button
-                  onClick={() => handlePageClick('contact')}
+                <a
+                  href="/contact"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handlePageClick('contact');
+                  }}
                   id="footer-nav-contact"
                   className="hover:text-blue-400 flex items-center gap-1.5 transition-colors text-slate-400 hover:text-white"
                 >
                   <ChevronRight className="w-3.5 h-3.5 text-slate-500" />
                   <span>Contact Clinic & Map</span>
-                </button>
+                </a>
               </li>
               <li>
                 <button
@@ -123,14 +139,18 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenBooking }) => 
             <ul className="space-y-2 text-sm text-slate-400">
               {SERVICES_DATA.map((service) => (
                 <li key={service.id}>
-                  <button
-                    onClick={() => handlePageClick('service-detail', service.id)}
+                  <a
+                    href={`/services/${service.id}`}
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handlePageClick('service-detail', service.id);
+                    }}
                     id={`footer-service-${service.id}`}
                     className="hover:text-blue-400 text-left transition-colors flex items-center gap-1.5 text-xs sm:text-sm"
                   >
                     <span className="w-1.5 h-1.5 rounded-full bg-blue-500 shrink-0"></span>
                     <span>{service.title}</span>
-                  </button>
+                  </a>
                 </li>
               ))}
             </ul>

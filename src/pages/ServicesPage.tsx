@@ -165,14 +165,18 @@ export const ServicesPage: React.FC<ServicesPageProps> = ({
               </div>
 
               <div className="flex flex-wrap items-center gap-2 shrink-0">
-                <button
-                  onClick={() => onNavigate('service-detail', service.id)}
+                <a
+                  href={`/services/${service.id}`}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    onNavigate('service-detail', service.id);
+                  }}
                   id={`service-view-page-btn-${service.id}`}
                   className="inline-flex items-center gap-1.5 px-4 py-2.5 bg-slate-900 hover:bg-blue-600 text-white rounded-xl text-xs sm:text-sm font-bold shadow-xs transition-all active:scale-95"
                 >
                   <span>View Dedicated Service Page</span>
                   <ArrowRight className="w-4 h-4" />
-                </button>
+                </a>
                 <button
                   onClick={() => onOpenBooking(service.title)}
                   id={`service-book-btn-${service.id}`}

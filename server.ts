@@ -83,6 +83,10 @@ async function startServer() {
     });
   });
 
+  // Serve public static assets (favicons, robots.txt, sitemap.xml, images, etc.)
+  const publicDir = path.join(process.cwd(), "public");
+  app.use(express.static(publicDir));
+
   // Vite middleware for development vs Static serving for production
   if (process.env.NODE_ENV !== "production") {
     const vite = await createViteServer({

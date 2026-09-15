@@ -79,23 +79,104 @@ export default function App() {
   // Update Dynamic SEO & Schema metadata per page
   useEffect(() => {
     const doctorImageUrl = 'https://hasnainent.com/images/dr-hasnain-haider-ent.jpg';
+    const clinicLogoUrl = 'https://hasnainent.com/images/ent-clinic-logo.png';
     let title = 'Dr. Hasnain Haider - Best ENT Specialist in Lahore';
     let description =
       'Consult Dr. Hasnain Haider (MBBS, FCPS), leading ENT Specialist and ENT Surgeon in Johar Town, Lahore. Expert treatments for sinus, ear infections, deviated nasal septum, tonsils, vertigo, and hearing loss.';
     let canonicalUrl = 'https://hasnainent.com/';
     let dynamicSchema: Record<string, unknown> | null = null;
+    let breadcrumbItems: { '@type': string; position: number; name: string; item: string }[] = [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: 'https://hasnainent.com/',
+      },
+    ];
+
+    const SERVICE_SEO_MAP: Record<
+      string,
+      { title: string; desc: string; procedureName: string; bodyLocation: string }
+    > = {
+      'sinus-treatment': {
+        title: 'Sinus Treatment & FESS Surgery in Lahore | Dr. Hasnain Haider',
+        desc: 'Advanced sinus treatment & Functional Endoscopic Sinus Surgery (FESS) in Johar Town, Lahore by Dr. Hasnain Haider. Relief from chronic sinusitis, facial pain & nasal polyps.',
+        procedureName: 'Functional Endoscopic Sinus Surgery (FESS) & Sinusitis Care',
+        bodyLocation: 'Paranasal Sinuses and Nasal Cavity',
+      },
+      'nose-disorders': {
+        title: 'Septoplasty & Deviated Nasal Septum (DNS) in Lahore | Dr. Hasnain Haider',
+        desc: 'Precision Septoplasty, Coblation Turbinoplasty & nasal blockage correction by Dr. Hasnain Haider in Lahore. Safe, painless surgical relief for deviated septum (DNS).',
+        procedureName: 'Septoplasty and Turbinate Reduction Surgery',
+        bodyLocation: 'Nose and Nasal Septum',
+      },
+      'ear-treatment': {
+        title: 'Ear Infection & Tympanoplasty Treatment in Lahore | Dr. Hasnain Haider',
+        desc: 'Comprehensive ear treatment in Lahore: microscopic ear cleaning, eardrum perforation repair (tympanoplasty), ear discharge & otitis media care by Dr. Hasnain Haider.',
+        procedureName: 'Microscopic Otologic Examination and Tympanoplasty',
+        bodyLocation: 'Ear and Tympanic Membrane',
+      },
+      'throat-problems': {
+        title: 'Coblation Tonsillectomy & Throat Treatment in Lahore | Dr. Hasnain Haider',
+        desc: 'Modern Coblation Tonsillectomy, adenoid removal, chronic pharyngitis, and vocal cord hoarseness treatment by Dr. Hasnain Haider in Johar Town, Lahore.',
+        procedureName: 'Coblation Tonsillectomy and Laryngopharyngeal Treatment',
+        bodyLocation: 'Throat, Tonsils, and Pharynx',
+      },
+      'allergy-treatment': {
+        title: 'ENT Allergy & Allergic Rhinitis Treatment in Lahore | Dr. Hasnain Haider',
+        desc: 'Expert allergy specialist in Lahore providing lasting relief for allergic rhinitis, morning sneezing, dust/pollen allergies, and chronic nasal congestion.',
+        procedureName: 'Otolaryngologic Allergy Evaluation and Rhinitis Protocol',
+        bodyLocation: 'Upper Respiratory Tract and Nasal Mucosa',
+      },
+      'hearing-balance': {
+        title: 'Vertigo (BPPV) & Hearing Loss Treatment in Lahore | Dr. Hasnain Haider',
+        desc: 'Specialized inner ear vertigo treatment, bedside Epley canalith repositioning maneuver, tinnitus evaluation, and sudden hearing loss care by Dr. Hasnain Haider in Lahore.',
+        procedureName: 'Dix-Hallpike Diagnosis and Epley Canalith Repositioning',
+        bodyLocation: 'Inner Ear and Vestibular System',
+      },
+      'snoring-sleep': {
+        title: 'Snoring & Sleep Apnea (OSA) Treatment in Lahore | Dr. Hasnain Haider',
+        desc: 'Comprehensive upper airway endoscopy, obstructive sleep apnea (OSA) diagnosis, and surgical airway widening for loud snoring by Dr. Hasnain Haider in Lahore.',
+        procedureName: 'Sleep Apnea Upper Airway Assessment and Snoring Surgery',
+        bodyLocation: 'Upper Airway and Soft Palate',
+      },
+    };
 
     if (currentPage === 'service-detail' && selectedServiceId) {
       const srv = SERVICES_DATA.find((s) => s.id === selectedServiceId) || SERVICES_DATA[0];
-      title = `${srv.title} in Lahore | Dr. Hasnain Haider ENT Specialist`;
-      description = `${srv.shortDesc} Expert diagnosis, conservative care & modern surgical protocols by Dr. Hasnain Haider in Johar Town, Lahore.`;
+      const customSeo = SERVICE_SEO_MAP[srv.id];
+      title = customSeo?.title || `${srv.title} in Lahore | Dr. Hasnain Haider ENT Specialist`;
+      description = customSeo?.desc || `${srv.shortDesc} Expert diagnosis, conservative care & modern surgical protocols by Dr. Hasnain Haider in Johar Town, Lahore.`;
       canonicalUrl = `https://hasnainent.com/services/${srv.id}`;
+
+      breadcrumbItems = [
+        {
+          '@type': 'ListItem',
+          position: 1,
+          name: 'Home',
+          item: 'https://hasnainent.com/',
+        },
+        {
+          '@type': 'ListItem',
+          position: 2,
+          name: 'ENT Services',
+          item: 'https://hasnainent.com/services',
+        },
+        {
+          '@type': 'ListItem',
+          position: 3,
+          name: srv.title,
+          item: canonicalUrl,
+        },
+      ];
+
       dynamicSchema = {
         '@context': 'https://schema.org',
         '@type': 'MedicalProcedure',
-        name: `${srv.title} in Lahore`,
+        name: customSeo?.procedureName || `${srv.title} in Lahore`,
         procedureType: 'https://health-lifesci.schema.org/MedicalProcedure',
-        description: srv.shortDesc,
+        bodyLocation: customSeo?.bodyLocation || 'Ear, Nose and Throat',
+        description,
         image: doctorImageUrl,
         primaryImageOfPage: {
           '@type': 'ImageObject',
@@ -106,6 +187,7 @@ export default function App() {
           '@type': 'Physician',
           name: DOCTOR_INFO.name,
           image: doctorImageUrl,
+          logo: clinicLogoUrl,
           medicalSpecialty: 'https://health-lifesci.schema.org/Otolaryngologic',
           telephone: '+923116712017',
           address: {
@@ -127,6 +209,22 @@ export default function App() {
       description =
         'Comprehensive otolaryngology services: FESS sinus surgery, septoplasty for DNS, ear microsurgery, coblation tonsillectomy, allergy and vertigo treatments in Lahore.';
       canonicalUrl = 'https://hasnainent.com/services';
+
+      breadcrumbItems = [
+        {
+          '@type': 'ListItem',
+          position: 1,
+          name: 'Home',
+          item: 'https://hasnainent.com/',
+        },
+        {
+          '@type': 'ListItem',
+          position: 2,
+          name: 'ENT Services',
+          item: 'https://hasnainent.com/services',
+        },
+      ];
+
       dynamicSchema = {
         '@context': 'https://schema.org',
         '@type': 'MedicalWebPage',
@@ -143,6 +241,7 @@ export default function App() {
           '@type': 'Physician',
           name: DOCTOR_INFO.name,
           image: doctorImageUrl,
+          logo: clinicLogoUrl,
           telephone: '+923116712017',
         },
       };
@@ -151,11 +250,28 @@ export default function App() {
       description =
         'Learn about Dr. Hasnain Haider, Consultant ENT Specialist and Head & Neck Surgeon in Lahore with 9+ years of experience, 4,500+ successful ENT surgeries, and PMC/PMDC verification.';
       canonicalUrl = 'https://hasnainent.com/about';
+
+      breadcrumbItems = [
+        {
+          '@type': 'ListItem',
+          position: 1,
+          name: 'Home',
+          item: 'https://hasnainent.com/',
+        },
+        {
+          '@type': 'ListItem',
+          position: 2,
+          name: 'About Dr. Hasnain Haider',
+          item: 'https://hasnainent.com/about',
+        },
+      ];
+
       dynamicSchema = {
         '@context': 'https://schema.org',
         '@type': 'Physician',
         name: DOCTOR_INFO.name,
         image: doctorImageUrl,
+        logo: clinicLogoUrl,
         primaryImageOfPage: {
           '@type': 'ImageObject',
           url: doctorImageUrl,
@@ -221,6 +337,22 @@ export default function App() {
       description =
         'Visit Dr. Hasnain Haider ENT Clinic at 24-26 Maulana Shaukat Ali Rd, Block A Phase 1 Johar Town, Lahore. Timings: Mon-Sat 8:00 AM - 9:30 PM. Call or WhatsApp 0311 6712017.';
       canonicalUrl = 'https://hasnainent.com/contact';
+
+      breadcrumbItems = [
+        {
+          '@type': 'ListItem',
+          position: 1,
+          name: 'Home',
+          item: 'https://hasnainent.com/',
+        },
+        {
+          '@type': 'ListItem',
+          position: 2,
+          name: 'Contact Clinic',
+          item: 'https://hasnainent.com/contact',
+        },
+      ];
+
       dynamicSchema = {
         '@context': 'https://schema.org',
         '@type': 'ContactPage',
@@ -237,6 +369,7 @@ export default function App() {
           '@type': 'Physician',
           name: DOCTOR_INFO.name,
           image: doctorImageUrl,
+          logo: clinicLogoUrl,
           telephone: '+923116712017',
           address: {
             '@type': 'PostalAddress',
@@ -244,6 +377,38 @@ export default function App() {
             addressLocality: 'Lahore',
             addressCountry: 'PK',
           },
+        },
+      };
+    } else {
+      // Home page
+      dynamicSchema = {
+        '@context': 'https://schema.org',
+        '@type': 'MedicalClinic',
+        name: 'Dr. Hasnain Haider ENT Clinic Lahore',
+        description,
+        url: canonicalUrl,
+        image: doctorImageUrl,
+        logo: {
+          '@type': 'ImageObject',
+          url: clinicLogoUrl,
+          width: 1024,
+          height: 1024,
+        },
+        telephone: '+923116712017',
+        medicalSpecialty: 'https://health-lifesci.schema.org/Otolaryngologic',
+        priceRange: '$$',
+        address: {
+          '@type': 'PostalAddress',
+          streetAddress: '24, 25, 26 Maulana Shaukat Ali Rd, Block A Phase 1 Johar Town',
+          addressLocality: 'Lahore',
+          addressRegion: 'Punjab',
+          postalCode: '54782',
+          addressCountry: 'PK',
+        },
+        geo: {
+          '@type': 'GeoCoordinates',
+          latitude: '31.4697',
+          longitude: '74.2982',
         },
       };
     }
@@ -299,7 +464,7 @@ export default function App() {
     }
     twImg.setAttribute('content', doctorImageUrl);
 
-    // Dynamic Per-Page Schema Injection
+    // Dynamic Per-Page Schema Injection with @graph (Google Recommended)
     let schemaScript = document.getElementById('dynamic-page-schema') as HTMLScriptElement | null;
     if (dynamicSchema) {
       if (!schemaScript) {
@@ -308,7 +473,21 @@ export default function App() {
         schemaScript.type = 'application/ld+json';
         document.head.appendChild(schemaScript);
       }
-      schemaScript.textContent = JSON.stringify(dynamicSchema);
+
+      const breadcrumbSchema = {
+        '@type': 'BreadcrumbList',
+        itemListElement: breadcrumbItems,
+      };
+
+      const unifiedGraphSchema = {
+        '@context': 'https://schema.org',
+        '@graph': [
+          dynamicSchema,
+          breadcrumbSchema,
+        ],
+      };
+
+      schemaScript.textContent = JSON.stringify(unifiedGraphSchema);
     } else if (schemaScript) {
       schemaScript.remove();
     }
